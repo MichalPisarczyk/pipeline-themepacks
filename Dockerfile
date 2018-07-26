@@ -1,12 +1,12 @@
-FROM essjayhch/ruby:2.5.1
+FROM livelink/web-prism:latest
 
-RUN mkdir /app
+RUN mkdir /pipeline-app
 
-WORKDIR /app
+WORKDIR /pipeline-app
 
-COPY ./Gemfile* /app/
+COPY ./Gemfile* /pipeline-app/
 RUN bundle install --without nothing
 
-ADD . /app
+ADD . /pipeline-app
 
 CMD rake 'run[*]'
