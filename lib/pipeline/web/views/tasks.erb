@@ -1,0 +1,20 @@
+<table>
+  <thead>
+  <tr>
+  <th>Task</th>
+  <th>Processed</th>
+  <th></th>
+  </tr>
+  </thead>
+  <tbody>
+        <% Pipeline::Task.task_classes.each do |task_class| %>
+          <tr>
+          <th><%= task_class.name %></th>
+          <td><%= Resque.redis.get(task_class.stats_key) || '?' %></td>
+          <% for queue_name in task_class.queue_names %>
+          <td><a href="/queues/<%= queue_name %>"><%= queue_name %></a></td>
+          <% end %>
+          </tr>
+        <% end %>
+  </tbody>
+</table>
