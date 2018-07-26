@@ -12,6 +12,6 @@ class PrepareThemepack
   def call
     puts "Done - #{job_data.inspect}"
 
-    output_next("rendered")
+    output_next("rendered", {})
   end
 end

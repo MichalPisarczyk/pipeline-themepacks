@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
+
 # Basic task
 module Pipeline
   module Task
