@@ -2,7 +2,7 @@
 
 require 'pipeline'
 
-class ImageReporter
+class OutputThemepack
   include Pipeline::Task
 
   def call
