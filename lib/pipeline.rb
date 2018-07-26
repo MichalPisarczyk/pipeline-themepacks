@@ -4,6 +4,7 @@ require 'logger'
 require 'pipeline/task'
 require 'pipeline/next_task_router'
 require 'pipeline/next_task'
+require 'json'
 
 module Pipeline
   module_function

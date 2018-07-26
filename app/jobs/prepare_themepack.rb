@@ -6,7 +6,7 @@ class PrepareThemepack
   include Pipeline::Task
 
   output do |map|
-    map.next_task :PrepareThemepack
+    map.next_task :RenderThemepack
   end
 
   def call
