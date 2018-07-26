@@ -9,16 +9,19 @@ module Pipeline
     def self.registered(app)
       app.get('/tasks') { pipeline_view(:tasks) }
 
-      app.get('/entries') { pipeline_view(:entry) }
+      app.get('/enqueue') { pipeline_view(:entry) }
 
-      app.post('/queue-tp') do
+      app.post('/enqueue-tp') do
         session[:message] = nil
-        Resque.enqueue_to('prepare_themepack', PrepareThemepack, job_spec)
-        session[:message] = "You queued a render for: #{theme_to_queue}"
-        redirect '/entries'
+        unless theme_to_queue == ''
+          Resque.enqueue_to('prepare_themepack', PrepareThemepack, job_spec)
+          session[:message] = "You queued a render for: #{theme_to_queue}"
+        end
+        redirect '/enqueue'
       end
 
       app.tabs << 'Tasks'
+      app.tabs << 'Enqueue'
 
       app.helpers do
         def pipeline_view(filename, options = {}, locals = {})

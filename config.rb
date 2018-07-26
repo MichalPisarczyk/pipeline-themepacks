@@ -2,4 +2,4 @@
 
 require 'resque'
 
-Resque.redis = Redis.new
+Resque.redis = Redis.new(url: 'redis://redis')
